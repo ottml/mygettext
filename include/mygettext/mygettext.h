@@ -38,7 +38,7 @@ inline const char* _(const std::string& txt)
     return gettext(txt.c_str());
 }
 /// Return unmodified string (used when translation is done at other place, e.g. string constants)
-inline constexpr MGT_FORMAT_ARG(1) const char* gettext_noop(const char* const str)
+constexpr MGT_FORMAT_ARG(1) const char* gettext_noop(const char* const str)
 {
     return str;
 }

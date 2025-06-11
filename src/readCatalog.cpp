@@ -99,7 +99,7 @@ std::map<std::string, std::string> readCatalog(const std::string& catalogFilepat
     {
         file.seekg(static_cast<std::streampos>(entryDescriptor.keyOffset));
         entryDescriptor.key.resize(entryDescriptor.keyLen);
-        if(!file.read(&entryDescriptor.key[0], entryDescriptor.keyLen))
+        if(!file.read(entryDescriptor.key.data(), entryDescriptor.keyLen))
             throw std::runtime_error("Failed to read key");
     }
 
@@ -137,7 +137,7 @@ std::map<std::string, std::string> readCatalog(const std::string& catalogFilepat
 
             std::string& entry = entries[entryDescriptor.key];
             entry.resize(entryDescriptor.valueLen);
-            if(!file.read(&entry[0], entryDescriptor.valueLen))
+            if(!file.read(entry.data(), entryDescriptor.valueLen))
                 throw std::runtime_error("Failed to read entry");
         }
     }
